@@ -69,3 +69,13 @@ def split_dataset(
             shutil.copy(os.path.join(cls_path, img), os.path.join(test_dir, cls, img))
 
     print("\n🎉 Done! Dataset split successfully.")
+
+    if __name__ == "__main__":
+        split_dataset(
+            data_dir=DATA_DIR,
+            output_dir=OUTPUT_DIR,
+            train_ratio=TRAIN_RATIO,
+            val_ratio=VAL_RATIO,
+            test_ratio=TEST_RATIO,
+            seed=SEED
+        )
