@@ -58,3 +58,14 @@ def split_dataset(
         os.makedirs(os.path.join(train_dir, cls), exist_ok=True)
         os.makedirs(os.path.join(val_dir, cls), exist_ok=True)
         os.makedirs(os.path.join(test_dir, cls), exist_ok=True)
+
+        for img in tqdm(train_imgs, desc=f"{cls} → Train"):
+            shutil.copy(os.path.join(cls_path, img), os.path.join(train_dir, cls, img))
+
+        for img in tqdm(val_imgs, desc=f"{cls} → Val"):
+            shutil.copy(os.path.join(cls_path, img), os.path.join(val_dir, cls, img))
+
+        for img in tqdm(test_imgs, desc=f"{cls} → Test"):
+            shutil.copy(os.path.join(cls_path, img), os.path.join(test_dir, cls, img))
+
+    print("\n🎉 Done! Dataset split successfully.")
