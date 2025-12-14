@@ -47,3 +47,10 @@ train_gen = train_datagen.flow_from_directory(
     class_indices = train_gen.class_indices
     print("Class indices (name -> index):")
     print(class_indices)
+
+    model = build_simple_cnn(input_shape=(128, 128, 3), num_classes=len(class_indices))
+    model.compile(
+        optimizer='adam',
+        loss='categorical_crossentropy',
+        metrics=['accuracy']
+    )
