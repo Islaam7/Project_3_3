@@ -136,3 +136,38 @@ def plot_history(history, output_dir: str = None):
                     f.write("Index -> Class name (wrapped/shortened)\n")
                     for idx, name in enumerate(short_names):
                         f.write(f"{idx}\t{name}\n")
+def plot_sample_predictions(model, test_gen, class_names, out_path, n_samples=39):
+    """
+    Generates a grid of sample test images with predicted + true labels.
+    Saves output to sample_predictions.png
+    """
+
+    # Fetch a full batch from generator (no shuffle)
+    images, labels = next(test_gen)  # labels are one-hot encoded
+    y_true = np.argmax(labels, axis=1)
+
+    # Predict
+    y_prob = model.predict(images)
+    y_pred = np.argmax(y_prob, axis=1)
+
+    # Plot
+    cols = 4
+    rows = n_samples // cols
+    plt.figure(figsize=(16, 16))
+
+    for i in range(n_samples):
+        plt.subplot(rows, cols, i+1)
+        plt.imshow(images[i])
+        plt.axis('off')
+
+        true_label = class_names[y_true[i]]
+        pred_label = class_names[y_pred[i]]
+
+        color = "green" if y_true[i] == y_pred[i] else "red"
+        title = f"T: {true_label}\nP: {pred_label}"
+
+        plt.title(title, color=color, fontsize=9)
+
+    plt.tight_layout()
+    plt.savefig(out_path, dpi=200)
+    plt.close()
