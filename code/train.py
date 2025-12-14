@@ -43,3 +43,7 @@ train_gen = train_datagen.flow_from_directory(
         shuffle=False,
         seed=SEED
     )
+
+    class_indices = train_gen.class_indices
+    print("Class indices (name -> index):")
+    print(class_indices)
