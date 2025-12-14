@@ -54,3 +54,7 @@ train_gen = train_datagen.flow_from_directory(
         loss='categorical_crossentropy',
         metrics=['accuracy']
     )
+
+    callbacks = get_callbacks('C:\\My folder\\CS417 (Neural Networks)\\MyProjects\\AI_Project\\saved_model\\')
+
+    print(model.summary())
