@@ -1,0 +1,9 @@
+flask
+tensorflow>=2.9,<3
+pillow
+numpy
+matplotlib>=3.5.0
+scikit-learn>=1.0.0
+Pillow>=9.0.0
+Flask>=2.0.0
+tqdm>=4.62.0
