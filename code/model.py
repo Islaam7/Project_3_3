@@ -16,5 +16,10 @@ def build_simple_cnn(input_shape=(128, 128, 3), num_classes=38):
         layers.Conv2D(128, (3, 3), activation='relu', padding='same'),
         layers.MaxPooling2D((2, 2)),
 
+        layers.Flatten(),
+        layers.Dense(256, activation='relu'),
+        layers.Dropout(0.5),
+        layers.Dense(num_classes, activation='softmax')
+
     ])
     return model
