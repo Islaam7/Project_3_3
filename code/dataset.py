@@ -35,3 +35,26 @@ def split_dataset(
     os.makedirs(train_dir, exist_ok=True)
     os.makedirs(val_dir, exist_ok=True)
     os.makedirs(test_dir, exist_ok=True)
+
+
+    classes = [d for d in os.listdir(data_dir) if os.path.isdir(os.path.join(data_dir, d))]
+
+    for cls in classes:
+        cls_path = os.path.join(data_dir, cls)
+        images = [f for f in os.listdir(cls_path) if os.path.isfile(os.path.join(cls_path, f))]
+        random.shuffle(images)
+
+        total = len(images)
+        train_count = int(total * train_ratio)
+        val_count = int(total * val_ratio)
+
+        train_imgs = images[:train_count]
+        val_imgs = images[train_count: train_count + val_count]
+        test_imgs = images[train_count + val_count:]
+
+        print(f"\nClass: {cls}")
+        print(f"Total = {total} | Train = {len(train_imgs)} | Val = {len(val_imgs)} | Test = {len(test_imgs)}")
+
+        os.makedirs(os.path.join(train_dir, cls), exist_ok=True)
+        os.makedirs(os.path.join(val_dir, cls), exist_ok=True)
+        os.makedirs(os.path.join(test_dir, cls), exist_ok=True)
