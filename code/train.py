@@ -25,3 +25,21 @@ train_datagen = ImageDataGenerator(
     )
 
     val_datagen = ImageDataGenerator(rescale=1. / 255)
+
+train_gen = train_datagen.flow_from_directory(
+        TRAIN_DIR,
+        target_size=IMAGE_SIZE,
+        batch_size=BATCH_SIZE,
+        class_mode='categorical',
+        shuffle=True,
+        seed=SEED
+    )
+
+    val_gen = val_datagen.flow_from_directory(
+        VAL_DIR,
+        target_size=IMAGE_SIZE,
+        batch_size=BATCH_SIZE,
+        class_mode='categorical',
+        shuffle=False,
+        seed=SEED
+    )
