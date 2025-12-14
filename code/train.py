@@ -58,3 +58,11 @@ train_gen = train_datagen.flow_from_directory(
     callbacks = get_callbacks('C:\\My folder\\CS417 (Neural Networks)\\MyProjects\\AI_Project\\saved_model\\')
 
     print(model.summary())
+
+    EPOCHS = 25
+    history = model.fit(
+        train_gen,
+        validation_data=val_gen,
+        epochs=EPOCHS,
+        callbacks=callbacks
+    )
