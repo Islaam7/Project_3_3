@@ -71,3 +71,6 @@ train_gen = train_datagen.flow_from_directory(
                                     "best_model.h5")
     model.save(final_model_path)
     plot_history(history, "C:\\My folder\\CS417 (Neural Networks)\\MyProjects\\AI_Project\\results\\")
+
+    if __name__ == "__main__":
+        main()
