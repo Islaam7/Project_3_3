@@ -13,3 +13,15 @@ def main():
     IMAGE_SIZE = (128, 128)
     BATCH_SIZE = 32
     SEED = 42
+
+train_datagen = ImageDataGenerator(
+        rescale=1. / 255,
+        rotation_range=20,
+        width_shift_range=0.1,
+        height_shift_range=0.1,
+        zoom_range=0.15,
+        horizontal_flip=True,
+        brightness_range=(0.8, 1.2)
+    )
+
+    val_datagen = ImageDataGenerator(rescale=1. / 255)
